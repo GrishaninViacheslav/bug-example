@@ -6,15 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import by.kirich1409.viewbindingdelegate.CreateMethod
-import by.kirich1409.viewbindingdelegate.viewBinding
 import io.github.grishaninvyacheslav.bugexample.BackButtonListener
 import io.github.grishaninvyacheslav.bugexample.databinding.FragmentMasterBinding
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
 class MasterFragment : MvpAppCompatFragment(), MasterView, BackButtonListener {
-    private val view: FragmentMasterBinding by viewBinding(createMethod = CreateMethod.INFLATE)
+    private var _view: FragmentMasterBinding? = null
+    private val view get() = _view!!
 
     private val presenter: MasterPresenter by moxyPresenter {
         MasterPresenter()
@@ -27,10 +26,14 @@ class MasterFragment : MvpAppCompatFragment(), MasterView, BackButtonListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = view.apply {
-        incrementCounterButton.setOnClickListener{ presenter.incrementCounter() }
-        showDetailsButton.setOnClickListener{ presenter.openDetails() }
-    }.root
+    ): View{
+        _view = FragmentMasterBinding.inflate(layoutInflater)
+        with(view){
+            incrementCounterButton.setOnClickListener{ presenter.incrementCounter() }
+            showDetailsButton.setOnClickListener{ presenter.openDetails() }
+        }
+        return view.root
+    }
 
     override fun showCount(count: Int) {
         view.counterTextView.text = "НАЖАТИЙ: $count"
