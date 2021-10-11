@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="100dp"
+        android:gravity="center"
+        android:text="MASTER FRAGMENT" />
+
+    <TextView
+        android:id="@+id/counter_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:text="НАЖАТИЙ: 0" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/increment_counter_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="INCREMENT COUNTER" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/show_details_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="GO TO DETAILS FRAGMENT" />
+</LinearLayout>
